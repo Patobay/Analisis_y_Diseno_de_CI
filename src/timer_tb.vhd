@@ -1,5 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use std.env.finish;
 use work.all;
 
 entity Timer_tb is
@@ -32,7 +33,9 @@ begin
         enable <= '1';
         wait until z = '1';
         reload <= "00000011";
-        wait;
+        wait until z = '1';
+	wait for clk_half_period;
+	finish;
     end process;
 
 end architecture;
